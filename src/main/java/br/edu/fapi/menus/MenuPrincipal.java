@@ -1,6 +1,5 @@
 package br.edu.fapi.menus;
 
-import br.edu.fapi.jogo.Jogo;
 import br.edu.fapi.model.Jogador;
 
 import java.util.Scanner;
@@ -20,6 +19,7 @@ public class MenuPrincipal {
         jogador.setNome(scanner.nextLine());
 
         while (continua) {
+            System.out.println();
             System.out.println("Escolha uma opcao");
             System.out.println("1- Jogar");
             System.out.println("2- Gerar Relatorios");

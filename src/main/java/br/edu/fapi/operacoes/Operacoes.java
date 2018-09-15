@@ -20,7 +20,7 @@ public class Operacoes {
         return false;
     }
 
-    public String lerPalavra(Scanner scanner, Jogador jogador) {
+    public static String lerPalavra(Scanner scanner, Jogador jogador) {
         boolean palavraValida;
         String palavra;
 
@@ -109,15 +109,15 @@ public class Operacoes {
             char c;
 
             do {
-                System.out.print("Escolha uma letra: ");
+                System.out.print("Escolha uma letra (ou '0' para abandonar o jogo): ");
                 letra = scanner.nextLine();
                 letra = letra.toUpperCase();
                 c = letra.charAt(0);
-                if (!Character.isLetter(c)) {
+                if (!Character.isLetter(c) && !"0".equalsIgnoreCase(String.valueOf(c))) {
                     System.out.println("");
                     System.out.println("Caracter inválido, são aceitas apenas letras. Digite novamente");
                 }
-            } while (!Character.isLetter(c));
+            } while (!Character.isLetter(c) && !"0".equalsIgnoreCase(String.valueOf(c)));
 
             if (letra.length() != 1 || letra.isEmpty()) {
                 System.out.println("");

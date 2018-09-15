@@ -1,9 +1,12 @@
 package br.edu.fapi.model;
 
+import java.sql.Date;
+
 public class Jogador {
     private String nome;
     private String situacao;
     private int numVidas;
+    private Date inicioJogo;
 
     public String getNome() {
         return nome;
@@ -27,5 +30,13 @@ public class Jogador {
 
     public void setNumVidas(int numVidas) {
         this.numVidas = numVidas;
+    }
+
+    public Date getInicioJogo() {
+        return inicioJogo;
+    }
+
+    public void setInicioJogo(Date inicioJogo) {
+        this.inicioJogo = inicioJogo;
     }
 }

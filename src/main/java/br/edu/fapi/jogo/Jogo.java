@@ -16,10 +16,9 @@ public class Jogo {
         int contDiminuiVida;
         String letra;
         boolean acabaJogo = false;
-        Operacoes operacoes = new Operacoes();
 
         //leitura da palavra e criação da palavra que contem  "_" no lugar das letras.
-        palavra = operacoes.lerPalavra(scanner, jogador);
+        palavra = Operacoes.lerPalavra(scanner, jogador);
 
         boolean temHifen;
         temHifen = Operacoes.temHifen(palavra);
@@ -48,6 +47,12 @@ public class Jogo {
             letraJaFalada = false;
 
             letra = Operacoes.validaLetraAdvinha(scanner);
+
+            if (letra.equalsIgnoreCase("0")){
+                System.out.println("Jogo encerrado");
+                jogador.setSituacao("ABANDONO");
+                break;
+            }
 
             //confere se já possui a letra digitada no ArrayList de letrasEscolhidas.
             letraJaFalada = Operacoes.confereLetrasFaladas(letrasEscolhidas, letra);
@@ -97,6 +102,7 @@ public class Jogo {
                     Operacoes.limpaTela();
                     System.out.println("Suas vidas acabaram " + jogador.getNome() + " :( ... Infelizmente você perdeu.");
                     System.out.println("A palavra era: " + palavra);
+                    jogador.setSituacao("DERROTA");
                     acabaJogo = true;
                 }
             } else {
@@ -117,6 +123,7 @@ public class Jogo {
                 System.out.println("Parabens " + jogador.getNome() + "!!!");
                 System.out.println("Você ganhou acertando a palavra: " + palavra);
                 System.out.println("Suas vidas restantes: " + jogador.getNumVidas());
+                jogador.setSituacao("VITORIA");
             }
             //do/while que possibilita os turnos do jogo.
         } while (!acabaJogo && numLetraAtual != palavra.length());
