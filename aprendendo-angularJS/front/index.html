@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="produtosApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Desenvolvendo Aplicações Web com AngularJS e Java</title>
+</head>
+<body ng-controller="ProdutosController">
+
+    <form>
+        <h1>Cadastro</h1>
+        <label>Codigo:</label>
+        <input id="codigo" name="codigo" type="text" ng-model="produto.id"/>
+        <br>
+
+        <label>Descricao:</label>
+        <input id="descricao" name="descricao" type="text" ng-model="produto.descricao"/>
+        <br>
+        <label>Preço:</label>
+        <input id="preco" name="preco" type="text" ng-model="produto.preco"/>
+        <br>
+        <button ng-click="salvar(produto)">Salvar</button>
+
+
+
+
+
+    </form>
+    <div ng-show="produtos.length > 0">
+    <h1>Tabela de preços</h1>
+    <table >
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="produto in produtos track by $index">
+            <td>{{produto.id}}</td>
+            <td>{{produto.descricao}}</td>
+            <td>R$ {{produto.preco}}</td>
+            <td><a href="" ng-click="excluir(produto)">[EXCLUIR]</a></td>
+        </tr>
+        </tbody>
+
+
+    </table>
+    </div>
+
+
+    <script src="js/angular.min.js"></script>
+    <script>
+        var app = angular.module('produtosApp',[]);
+        app.controller('ProdutosController',function ($scope) {
+
+            $scope.produto = {};
+
+            var produtos = [{
+                id: 1,
+                descricao: 'Arroz',
+                preco: 2.50
+            },
+                {
+                    id:2,
+                    descricao:'Feijão',
+                    preco: 3.50
+                }
+            ];
+
+            $scope.produtos = produtos;
+
+            $scope.salvar = function (produto) {
+                produtos.push(produto);
+                $scope.produto = {};
+            };
+
+            $scope.excluir = function (produto) {
+
+                for (var i = 0; i < produtos.length ; i++) {
+                    if(produtos[i].id === produto.id){
+                        produtos.splice(i,1);
+                    }
+                }
+
+            };
+
+
+
+
+
+
+
+
+
+        });
+
+
+    </script>
+</body>
+</html>
